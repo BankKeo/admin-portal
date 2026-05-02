@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import {
     Table,
     TableBody,
@@ -11,14 +12,37 @@ import {
 } from "@/components/ui/table";
 import { submissions } from "@/lib/data";
 import { getStatusBadge } from "@/lib/utils";
-import { useNavigate } from "@tanstack/react-router";
-import { Eye, MoreHorizontal } from "lucide-react";
+import { Eye, Filter, MoreHorizontal, Search } from "lucide-react";
 
-const SubmissionsTable = () => {
-    const navigate = useNavigate();
-
+const SubmissionTable = () => {
     return (
         <Card className="lg:col-span-2">
+            <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle className="text-base font-semibold">
+                    Submissions
+                </CardTitle>
+
+                <div className="flex items-center gap-2">
+                    {/* Search */}
+                    <div className="relative">
+                        <Search className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
+                        <Input
+                            placeholder="Search submissions..."
+                            className="pl-8 w-55"
+                        />
+                    </div>
+
+                    {/* Filter */}
+                    <Button variant="outline" className="gap-2">
+                        <Filter className="w-4 h-4" />
+                        Filter
+                    </Button>
+
+                    {/* Status */}
+                    <Button variant="outline">All Status</Button>
+                </div>
+            </CardHeader>
+
             <CardContent>
                 <Table>
                     <TableHeader>
@@ -39,9 +63,6 @@ const SubmissionsTable = () => {
                             <TableRow
                                 key={item.id}
                                 className="hover:bg-muted/50"
-                                onClick={() =>
-                                    navigate({ to: `/submissions/${item.id}` })
-                                }
                             >
                                 <TableCell className="font-medium text-primary">
                                     {item.id}
@@ -67,10 +88,10 @@ const SubmissionsTable = () => {
 
                                 <TableCell className="text-right">
                                     <div className="flex justify-end gap-2">
-                                        <Button variant="outline" size="icon">
+                                        <Button variant="ghost" size="icon">
                                             <Eye className="w-4 h-4" />
                                         </Button>
-                                        <Button variant="outline" size="icon">
+                                        <Button variant="ghost" size="icon">
                                             <MoreHorizontal className="w-4 h-4" />
                                         </Button>
                                     </div>
@@ -84,4 +105,4 @@ const SubmissionsTable = () => {
     );
 };
 
-export default SubmissionsTable;
+export default SubmissionTable;
