@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AppSubmissionsIndexRouteImport } from './routes/_app/submissions/index'
+import { Route as AppSubmissionsSubmissionIdRouteImport } from './routes/_app/submissions/$submissionId'
 
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/_app',
@@ -27,27 +28,41 @@ const AppSubmissionsIndexRoute = AppSubmissionsIndexRouteImport.update({
   path: '/submissions/',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppSubmissionsSubmissionIdRoute =
+  AppSubmissionsSubmissionIdRouteImport.update({
+    id: '/submissions/$submissionId',
+    path: '/submissions/$submissionId',
+    getParentRoute: () => AppRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
+  '/submissions/$submissionId': typeof AppSubmissionsSubmissionIdRoute
   '/submissions/': typeof AppSubmissionsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AppIndexRoute
+  '/submissions/$submissionId': typeof AppSubmissionsSubmissionIdRoute
   '/submissions': typeof AppSubmissionsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteRouteWithChildren
   '/_app/': typeof AppIndexRoute
+  '/_app/submissions/$submissionId': typeof AppSubmissionsSubmissionIdRoute
   '/_app/submissions/': typeof AppSubmissionsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/submissions/'
+  fullPaths: '/' | '/submissions/$submissionId' | '/submissions/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/submissions'
-  id: '__root__' | '/_app' | '/_app/' | '/_app/submissions/'
+  to: '/' | '/submissions/$submissionId' | '/submissions'
+  id:
+    | '__root__'
+    | '/_app'
+    | '/_app/'
+    | '/_app/submissions/$submissionId'
+    | '/_app/submissions/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,16 +92,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSubmissionsIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/submissions/$submissionId': {
+      id: '/_app/submissions/$submissionId'
+      path: '/submissions/$submissionId'
+      fullPath: '/submissions/$submissionId'
+      preLoaderRoute: typeof AppSubmissionsSubmissionIdRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
   }
 }
 
 interface AppRouteRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
+  AppSubmissionsSubmissionIdRoute: typeof AppSubmissionsSubmissionIdRoute
   AppSubmissionsIndexRoute: typeof AppSubmissionsIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppIndexRoute: AppIndexRoute,
+  AppSubmissionsSubmissionIdRoute: AppSubmissionsSubmissionIdRoute,
   AppSubmissionsIndexRoute: AppSubmissionsIndexRoute,
 }
 

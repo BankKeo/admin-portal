@@ -23,7 +23,7 @@ import { Calendar, Eye, MoreHorizontal, Search } from "lucide-react";
 
 const SubmissionsTable = () => {
     return (
-        <Card className="lg:col-span-2 rounded-xl border bg-white transition">
+        <Card className="lg:col-span-2">
             <CardHeader className="flex flex-wrap items-center justify-end gap-3">
                 {/* 🔍 Search */}
                 <div className="relative w-[320px]">

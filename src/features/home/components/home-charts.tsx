@@ -65,7 +65,7 @@ const HomeCharts = () => {
     return (
         <div className="grid gap-4 lg:grid-cols-3">
             {/* LINE CHART */}
-            <Card className="lg:col-span-2 rounded-xl border bg-white transition">
+            <Card className="lg:col-span-2">
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-base font-semibold">
                         <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
@@ -118,7 +118,7 @@ const HomeCharts = () => {
             </Card>
 
             {/* PIE CHART */}
-            <Card className="rounded-xl border bg-white transition">
+            <Card>
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-base font-semibold">
                         <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">

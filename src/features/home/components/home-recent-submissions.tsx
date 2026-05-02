@@ -16,7 +16,7 @@ import { Eye, FileText, Filter, MoreHorizontal, Search } from "lucide-react";
 
 const HomeRecentSubmissions = () => {
     return (
-        <Card className="lg:col-span-2 rounded-xl border bg-white transition">
+        <Card className="lg:col-span-2">
             <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="flex items-center gap-2 text-base font-semibold">
                     <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
@@ -28,7 +28,7 @@ const HomeRecentSubmissions = () => {
                 <div className="flex items-center gap-2">
                     {/* Search */}
                     <div className="relative">
-                        <Search className="absolute left-2 top-2 w-4 h-4 text-muted-foreground" />
+                        <Search className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
                         <Input
                             placeholder="Search submissions..."
                             className="pl-8 w-55"
@@ -36,15 +36,13 @@ const HomeRecentSubmissions = () => {
                     </div>
 
                     {/* Filter */}
-                    <Button variant="outline" size="sm" className="gap-2">
+                    <Button variant="outline" className="gap-2">
                         <Filter className="w-4 h-4" />
                         Filter
                     </Button>
 
                     {/* Status */}
-                    <Button variant="outline" size="sm">
-                        All Status
-                    </Button>
+                    <Button variant="outline">All Status</Button>
                 </div>
             </CardHeader>
 

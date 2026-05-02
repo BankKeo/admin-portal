@@ -55,10 +55,7 @@ const HomeStatsCards = () => {
     return (
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
             {stats.map((stat) => (
-                <Card
-                    key={stat.title}
-                    className="rounded-xl border bg-white transition py-0"
-                >
+                <Card key={stat.title} className="transition py-0">
                     <CardContent className="p-5 flex flex-col gap-4">
                         {/* Top */}
                         <div className="flex items-center justify-between">
