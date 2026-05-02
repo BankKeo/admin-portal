@@ -27,6 +27,11 @@ const AppSidebar = () => {
     const { location } = useRouterState();
     const navigate = useNavigate();
 
+    const handleIsActive = (item: { to: string }) =>
+        item.to === "/"
+            ? location.pathname === "/"
+            : location.pathname.startsWith(item.to);
+
     return (
         <Sidebar className="bg-linear-to-b from-gray-100 to-gray-200">
             <SidebarContent>
@@ -48,7 +53,7 @@ const AppSidebar = () => {
                     <SidebarGroupLabel>MAIN</SidebarGroupLabel>
                     <SidebarMenu>
                         {mainItems.map((item) => {
-                            const isActive = location.pathname === item.to;
+                            const isActive = handleIsActive(item);
 
                             return (
                                 <SidebarMenuItem key={item.title}>
@@ -77,9 +82,7 @@ const AppSidebar = () => {
                     <SidebarGroupLabel>MANAGEMENT</SidebarGroupLabel>
                     <SidebarMenu>
                         {managementItems.map((item) => {
-                            const isActive = location.pathname.startsWith(
-                                item.to,
-                            );
+                            const isActive = handleIsActive(item);
 
                             return (
                                 <SidebarMenuItem key={item.title}>
