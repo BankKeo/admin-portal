@@ -59,8 +59,7 @@ const AppSidebar = () => {
                                         }
                                         className="
                                             h-10
-                                            data-[active=true]:bg-primary
-                                            data-[active=true]:text-primary-foreground
+                                            data-[active=true]:bg-primary/20
                                             data-[active=true]:font-medium
                                         "
                                     >
@@ -91,8 +90,7 @@ const AppSidebar = () => {
                                         }
                                         className="
                                             h-10
-                                            data-[active=true]:bg-primary
-                                            data-[active=true]:text-primary-foreground
+                                            data-[active=true]:bg-primary/20
                                             data-[active=true]:font-medium
                                         "
                                     >

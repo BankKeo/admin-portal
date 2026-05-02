@@ -87,3 +87,34 @@ export const reviewers = [
         status: "Active",
     },
 ];
+
+export const users = [
+    {
+        name: "Sarah Jenkins",
+        subtitle: "Department of Physics",
+        email: "sarah.jenkins@university.edu",
+        role: "Administrator",
+        canSubmit: true,
+        lastActive: "2 hours ago",
+        avatar: "",
+        initials: "SJ",
+    },
+    {
+        name: "Dr. Marcus Thorne",
+        subtitle: "Biological Sciences",
+        email: "m.thorne@research.org",
+        role: "Reviewer",
+        canSubmit: false,
+        lastActive: "Yesterday, 14:30",
+        initials: "MT",
+    },
+    {
+        name: "Elena Rostova",
+        subtitle: "History Faculty",
+        email: "elena.r@university.edu",
+        role: "Author",
+        canSubmit: true,
+        lastActive: "Oct 12, 2026",
+        initials: "EL",
+    },
+];
