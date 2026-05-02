@@ -9,26 +9,12 @@ import {
     SidebarFooter,
 } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-    Home,
-    FileText,
-    ClipboardCheck,
-    CheckCircle,
-    RefreshCw,
-    BookOpen,
-    Users,
-    Settings,
-    User,
-} from "lucide-react";
+import { Home, FileText, Users, Settings, User } from "lucide-react";
 import { useNavigate, useRouterState } from "@tanstack/react-router";
 
 const mainItems = [
     { title: "Dashboard", icon: Home, to: "/" },
     { title: "Submissions", icon: FileText, to: "/submissions" },
-    { title: "Reviews", icon: ClipboardCheck, to: "/reviews" },
-    { title: "Decisions", icon: CheckCircle, to: "/decisions" },
-    { title: "Revision & Resubmissions", icon: RefreshCw, to: "/revisions" },
-    { title: "Published Articles", icon: BookOpen, to: "/articles" },
 ];
 
 const managementItems = [
