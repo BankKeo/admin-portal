@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts";
 import {
@@ -6,6 +7,8 @@ import {
     ChartTooltipContent,
     type ChartConfig,
 } from "@/components/ui/chart";
+import { Label, Pie, PieChart } from "recharts";
+import { FileText } from "lucide-react";
 
 const chartData = [
     { month: "January", desktop: 186 },
@@ -28,34 +31,50 @@ const chartConfig = {
     },
 } satisfies ChartConfig;
 
-const data = [
-    { name: "Awaiting Reviewer", value: 12, color: "hsl(var(--primary))" },
-    { name: "In Review", value: 18, color: "hsl(var(--warning, 38 92% 50%))" },
-    {
-        name: "Review Completed",
-        value: 10,
-        color: "hsl(var(--secondary, 262 83% 58%))",
-    },
-    {
-        name: "Awaiting Decision",
-        value: 5,
-        color: "hsl(var(--success, 142 71% 45%))",
-    },
+const pieChartData = [
+    { name: "Awaiting Review", value: 275, fill: "oklch(0.85 0.08 142)" },
+    { name: "In Review", value: 200, fill: "oklch(0.7 0.12 142)" },
+    { name: "Review Completed", value: 287, fill: "oklch(0.55 0.15 142)" },
+    { name: "Awaiting Decision", value: 173, fill: "oklch(0.45 0.15 142)" },
 ];
 
+const pieChartConfig = {
+    awaitingReview: {
+        label: "Awaiting Review",
+        color: "oklch(0.85 0.08 142)",
+    },
+    inReview: {
+        label: "In Review",
+        color: "oklch(0.7 0.12 142)",
+    },
+    reviewCompleted: {
+        label: "Review Completed",
+        color: "oklch(0.55 0.15 142)",
+    },
+    awaitingDecision: {
+        label: "Awaiting Decision",
+        color: "oklch(0.45 0.15 142)",
+    },
+} satisfies ChartConfig;
+
 const HomeCharts = () => {
+    const totalVisitors = useMemo(() => {
+        return pieChartData.reduce((acc, curr) => acc + curr.value, 0);
+    }, []);
+
     return (
         <div className="grid gap-4 lg:grid-cols-3">
             {/* LINE CHART */}
             <Card className="lg:col-span-2 rounded-xl border bg-white transition">
-                <CardHeader className="flex flex-row items-center justify-between">
-                    <CardTitle className="text-base font-semibold">
-                        Submission Overview
+                <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-base font-semibold">
+                        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                            <FileText className="w-4 h-4" />
+                        </div>
+                        Submissions Overview
                     </CardTitle>
-                    <span className="text-sm text-muted-foreground">
-                        This Year
-                    </span>
                 </CardHeader>
+
                 <CardContent>
                     <ChartContainer
                         config={chartConfig}
@@ -101,12 +120,71 @@ const HomeCharts = () => {
             {/* PIE CHART */}
             <Card className="rounded-xl border bg-white transition">
                 <CardHeader>
-                    <CardTitle className="text-base font-semibold">
+                    <CardTitle className="flex items-center gap-2 text-base font-semibold">
+                        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                            <FileText className="w-4 h-4" />
+                        </div>
                         Review Overview
                     </CardTitle>
                 </CardHeader>
 
-                <CardContent className="flex flex-col items-center gap-4"></CardContent>
+                <CardContent className="flex flex-col items-center gap-4">
+                    <ChartContainer
+                        config={pieChartConfig}
+                        className="mx-auto aspect-square h-75"
+                    >
+                        <PieChart>
+                            <ChartTooltip
+                                cursor={false}
+                                content={<ChartTooltipContent hideLabel />}
+                            />
+                            <Pie
+                                data={pieChartData}
+                                dataKey="value"
+                                nameKey="name"
+                                innerRadius={60}
+                                strokeWidth={5}
+                            >
+                                <Label
+                                    content={({ viewBox }) => {
+                                        if (
+                                            viewBox &&
+                                            "cx" in viewBox &&
+                                            "cy" in viewBox
+                                        ) {
+                                            return (
+                                                <text
+                                                    x={viewBox.cx}
+                                                    y={viewBox.cy}
+                                                    textAnchor="middle"
+                                                    dominantBaseline="middle"
+                                                >
+                                                    <tspan
+                                                        x={viewBox.cx}
+                                                        y={viewBox.cy}
+                                                        className="fill-foreground text-3xl font-bold"
+                                                    >
+                                                        {totalVisitors.toLocaleString()}
+                                                    </tspan>
+                                                    <tspan
+                                                        x={viewBox.cx}
+                                                        y={
+                                                            (viewBox.cy || 0) +
+                                                            24
+                                                        }
+                                                        className="fill-muted-foreground"
+                                                    >
+                                                        Under Review
+                                                    </tspan>
+                                                </text>
+                                            );
+                                        }
+                                    }}
+                                />
+                            </Pie>
+                        </PieChart>
+                    </ChartContainer>
+                </CardContent>
             </Card>
         </div>
     );
