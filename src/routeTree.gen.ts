@@ -13,6 +13,7 @@ import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AppUsersIndexRouteImport } from './routes/_app/users/index'
 import { Route as AppSubmissionsIndexRouteImport } from './routes/_app/submissions/index'
+import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/index'
 import { Route as AppReviewersIndexRouteImport } from './routes/_app/reviewers/index'
 import { Route as AppUsersCreateRouteImport } from './routes/_app/users/create'
 import { Route as AppSubmissionsSubmissionIdRouteImport } from './routes/_app/submissions/$submissionId'
@@ -35,6 +36,11 @@ const AppUsersIndexRoute = AppUsersIndexRouteImport.update({
 const AppSubmissionsIndexRoute = AppSubmissionsIndexRouteImport.update({
   id: '/submissions/',
   path: '/submissions/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
+  id: '/settings/',
+  path: '/settings/',
   getParentRoute: () => AppRouteRoute,
 } as any)
 const AppReviewersIndexRoute = AppReviewersIndexRouteImport.update({
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/submissions/$submissionId': typeof AppSubmissionsSubmissionIdRoute
   '/users/create': typeof AppUsersCreateRoute
   '/reviewers/': typeof AppReviewersIndexRoute
+  '/settings/': typeof AppSettingsIndexRoute
   '/submissions/': typeof AppSubmissionsIndexRoute
   '/users/': typeof AppUsersIndexRoute
 }
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/submissions/$submissionId': typeof AppSubmissionsSubmissionIdRoute
   '/users/create': typeof AppUsersCreateRoute
   '/reviewers': typeof AppReviewersIndexRoute
+  '/settings': typeof AppSettingsIndexRoute
   '/submissions': typeof AppSubmissionsIndexRoute
   '/users': typeof AppUsersIndexRoute
 }
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/_app/submissions/$submissionId': typeof AppSubmissionsSubmissionIdRoute
   '/_app/users/create': typeof AppUsersCreateRoute
   '/_app/reviewers/': typeof AppReviewersIndexRoute
+  '/_app/settings/': typeof AppSettingsIndexRoute
   '/_app/submissions/': typeof AppSubmissionsIndexRoute
   '/_app/users/': typeof AppUsersIndexRoute
 }
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/submissions/$submissionId'
     | '/users/create'
     | '/reviewers/'
+    | '/settings/'
     | '/submissions/'
     | '/users/'
   fileRoutesByTo: FileRoutesByTo
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
     | '/submissions/$submissionId'
     | '/users/create'
     | '/reviewers'
+    | '/settings'
     | '/submissions'
     | '/users'
   id:
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '/_app/submissions/$submissionId'
     | '/_app/users/create'
     | '/_app/reviewers/'
+    | '/_app/settings/'
     | '/_app/submissions/'
     | '/_app/users/'
   fileRoutesById: FileRoutesById
@@ -151,6 +163,13 @@ declare module '@tanstack/react-router' {
       path: '/submissions'
       fullPath: '/submissions/'
       preLoaderRoute: typeof AppSubmissionsIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/settings/': {
+      id: '/_app/settings/'
+      path: '/settings'
+      fullPath: '/settings/'
+      preLoaderRoute: typeof AppSettingsIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/reviewers/': {
@@ -190,6 +209,7 @@ interface AppRouteRouteChildren {
   AppSubmissionsSubmissionIdRoute: typeof AppSubmissionsSubmissionIdRoute
   AppUsersCreateRoute: typeof AppUsersCreateRoute
   AppReviewersIndexRoute: typeof AppReviewersIndexRoute
+  AppSettingsIndexRoute: typeof AppSettingsIndexRoute
   AppSubmissionsIndexRoute: typeof AppSubmissionsIndexRoute
   AppUsersIndexRoute: typeof AppUsersIndexRoute
 }
@@ -200,6 +220,7 @@ const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppSubmissionsSubmissionIdRoute: AppSubmissionsSubmissionIdRoute,
   AppUsersCreateRoute: AppUsersCreateRoute,
   AppReviewersIndexRoute: AppReviewersIndexRoute,
+  AppSettingsIndexRoute: AppSettingsIndexRoute,
   AppSubmissionsIndexRoute: AppSubmissionsIndexRoute,
   AppUsersIndexRoute: AppUsersIndexRoute,
 }
