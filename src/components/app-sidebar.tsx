@@ -78,7 +78,9 @@ const AppSidebar = () => {
                     <SidebarGroupLabel>MANAGEMENT</SidebarGroupLabel>
                     <SidebarMenu>
                         {managementItems.map((item) => {
-                            const isActive = location.pathname === item.to;
+                            const isActive = location.pathname.startsWith(
+                                item.to,
+                            );
 
                             return (
                                 <SidebarMenuItem key={item.title}>

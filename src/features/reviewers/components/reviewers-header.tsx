@@ -16,6 +16,7 @@ const ReviewersHeader = () => {
 
             <Button
                 className="gap-2"
+                variant="outline"
                 onClick={() => navigate({ to: "/reviewers/create" })}
             >
                 <UserRoundPlus />
