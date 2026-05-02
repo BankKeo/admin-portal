@@ -1,7 +1,14 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import {
     Table,
     TableBody,
@@ -12,42 +19,56 @@ import {
 } from "@/components/ui/table";
 import { submissions } from "@/lib/data";
 import { getStatusBadge } from "@/lib/utils";
-import { Eye, FileText, Filter, MoreHorizontal, Search } from "lucide-react";
+import { Calendar, Eye, MoreHorizontal, Search } from "lucide-react";
 
-const HomeRecentSubmissions = () => {
+const SubmissionsTable = () => {
     return (
         <Card className="lg:col-span-2 rounded-xl border bg-white transition">
-            <CardHeader className="flex flex-row items-center justify-between">
-                <CardTitle className="flex items-center gap-2 text-base font-semibold">
-                    <div className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 text-blue-600">
-                        <FileText className="w-4 h-4" />
-                    </div>
-                    Recent Submissions
-                </CardTitle>
+            <CardHeader className="flex flex-wrap items-center justify-end gap-3">
+                {/* 🔍 Search */}
+                <div className="relative w-[320px]">
+                    <Search className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
+                    <Input
+                        placeholder="Search all submissions..."
+                        className="pl-9"
+                    />
+                </div>
+
+                {/* 📊 Status */}
+                <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">
+                        Status
+                    </span>
+
+                    <Select defaultValue="all">
+                        <SelectTrigger className="w-45">
+                            <SelectValue placeholder="All Statuses" />
+                        </SelectTrigger>
+
+                        <SelectContent>
+                            <SelectItem value="all">All Statuses</SelectItem>
+                            <SelectItem value="review">Under Review</SelectItem>
+                            <SelectItem value="revision">
+                                Revision Required
+                            </SelectItem>
+                            <SelectItem value="accepted">Accepted</SelectItem>
+                            <SelectItem value="rejected">Rejected</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
 
                 <div className="flex items-center gap-2">
-                    {/* Search */}
-                    <div className="relative">
-                        <Search className="absolute left-2 top-2 w-4 h-4 text-muted-foreground" />
-                        <Input
-                            placeholder="Search submissions..."
-                            className="pl-8 w-55"
-                        />
-                    </div>
+                    <span className="text-sm text-muted-foreground">Date</span>
 
-                    {/* Filter */}
-                    <Button variant="outline" size="sm" className="gap-2">
-                        <Filter className="w-4 h-4" />
-                        Filter
-                    </Button>
-
-                    {/* Status */}
-                    <Button variant="outline" size="sm">
-                        All Status
+                    <Button
+                        variant="outline"
+                        className="w-65 justify-between text-muted-foreground"
+                    >
+                        <span>May 24, 2025 — May 24, 2025</span>
+                        <Calendar className="w-4 h-4 ml-2" />
                     </Button>
                 </div>
             </CardHeader>
-
             <CardContent>
                 <Table>
                     <TableHeader>
@@ -93,10 +114,10 @@ const HomeRecentSubmissions = () => {
 
                                 <TableCell className="text-right">
                                     <div className="flex justify-end gap-2">
-                                        <Button variant="ghost" size="icon">
+                                        <Button variant="outline" size="icon">
                                             <Eye className="w-4 h-4" />
                                         </Button>
-                                        <Button variant="ghost" size="icon">
+                                        <Button variant="outline" size="icon">
                                             <MoreHorizontal className="w-4 h-4" />
                                         </Button>
                                     </div>
@@ -110,4 +131,4 @@ const HomeRecentSubmissions = () => {
     );
 };
 
-export default HomeRecentSubmissions;
+export default SubmissionsTable;

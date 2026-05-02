@@ -1,0 +1,42 @@
+export const submissions = [
+    {
+        id: "JESAM-2025-128",
+        title: "AI-Powered Learning Analytics in Higher Education",
+        author: "John Doe",
+        status: "Under Review",
+        similarity: 12,
+        date: "May 24, 2025",
+    },
+    {
+        id: "JESAM-2025-127",
+        title: "Green Supply Chain Management Practices",
+        author: "Maria Santos",
+        status: "Revision Required",
+        similarity: 18,
+        date: "May 23, 2025",
+    },
+    {
+        id: "JESAM-2025-126",
+        title: "Blockchain Technology in Financial Services",
+        author: "Michael Lee",
+        status: "Accepted",
+        similarity: 9,
+        date: "May 21, 2025",
+    },
+    {
+        id: "JESAM-2025-125",
+        title: "The Impact of Social Media on Student Performance",
+        author: "Sarah Johnson",
+        status: "Rejected",
+        similarity: 32,
+        date: "May 20, 2025",
+    },
+    {
+        id: "JESAM-2025-124",
+        title: "Sustainable Urban Development Strategies",
+        author: "David Brown",
+        status: "Under Review",
+        similarity: 14,
+        date: "May 19, 2025",
+    },
+];

@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
+import { Route as AppSubmissionsIndexRouteImport } from './routes/_app/submissions/index'
 
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/_app',
@@ -21,24 +22,32 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppSubmissionsIndexRoute = AppSubmissionsIndexRouteImport.update({
+  id: '/submissions/',
+  path: '/submissions/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
+  '/submissions/': typeof AppSubmissionsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AppIndexRoute
+  '/submissions': typeof AppSubmissionsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteRouteWithChildren
   '/_app/': typeof AppIndexRoute
+  '/_app/submissions/': typeof AppSubmissionsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/submissions/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/_app' | '/_app/'
+  to: '/' | '/submissions'
+  id: '__root__' | '/_app' | '/_app/' | '/_app/submissions/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -61,15 +70,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/submissions/': {
+      id: '/_app/submissions/'
+      path: '/submissions'
+      fullPath: '/submissions/'
+      preLoaderRoute: typeof AppSubmissionsIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
   }
 }
 
 interface AppRouteRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
+  AppSubmissionsIndexRoute: typeof AppSubmissionsIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppIndexRoute: AppIndexRoute,
+  AppSubmissionsIndexRoute: AppSubmissionsIndexRoute,
 }
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
