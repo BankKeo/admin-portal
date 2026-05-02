@@ -1,3 +1,4 @@
+import Pagination from "@/components/pagination";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,9 +13,16 @@ import {
 } from "@/components/ui/table";
 import { submissions } from "@/lib/data";
 import { getStatusBadge } from "@/lib/utils";
+import { useNavigate } from "@tanstack/react-router";
 import { Eye, FileText, Filter, MoreHorizontal, Search } from "lucide-react";
 
 const HomeRecentSubmissions = () => {
+    const navigate = useNavigate();
+
+    const handleNavigateToSubmission = (id: string) => {
+        navigate({ to: `/submissions/${id}` });
+    };
+
     return (
         <Card className="lg:col-span-2">
             <CardHeader className="flex flex-row items-center justify-between">
@@ -31,7 +39,7 @@ const HomeRecentSubmissions = () => {
                         <Search className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
                         <Input
                             placeholder="Search submissions..."
-                            className="pl-8 w-55"
+                            className="pl-8 w-72"
                         />
                     </div>
 
@@ -48,7 +56,7 @@ const HomeRecentSubmissions = () => {
 
             <CardContent>
                 <Table>
-                    <TableHeader>
+                    <TableHeader className="bg-muted/60 h-12">
                         <TableRow>
                             <TableHead>ID</TableHead>
                             <TableHead>Title</TableHead>
@@ -65,7 +73,10 @@ const HomeRecentSubmissions = () => {
                         {submissions.map((item) => (
                             <TableRow
                                 key={item.id}
-                                className="hover:bg-muted/50"
+                                className="hover:bg-muted/50 cursor-pointer"
+                                onClick={() =>
+                                    handleNavigateToSubmission(item.id)
+                                }
                             >
                                 <TableCell className="font-medium text-primary">
                                     {item.id}
@@ -103,6 +114,8 @@ const HomeRecentSubmissions = () => {
                         ))}
                     </TableBody>
                 </Table>
+
+                <Pagination />
             </CardContent>
         </Card>
     );

@@ -16,7 +16,7 @@ function RouteComponent() {
                 {/* Content area */}
                 <div className="flex flex-1 flex-col">
                     {/* Header */}
-                    <header className="flex h-14 items-center gap-4 border-b px-4">
+                    <header className="sticky top-0 z-50 bg-white flex h-14 items-center gap-4 border-b px-4">
                         <SidebarTrigger />
                         <div className="flex-1" />
 
