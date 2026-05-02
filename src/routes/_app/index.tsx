@@ -1,4 +1,5 @@
 import HomeCharts from "@/features/home/components/home-charts";
+import HomeRecentSubmissions from "@/features/home/components/home-recent-submissions";
 import HomeStatsCards from "@/features/home/components/home-stats-cards";
 import { createFileRoute } from "@tanstack/react-router";
 
@@ -11,6 +12,7 @@ function RouteComponent() {
         <div className="space-y-4 sm:space-y-6">
             <HomeStatsCards />
             <HomeCharts />
+            <HomeRecentSubmissions />
         </div>
     );
 }
