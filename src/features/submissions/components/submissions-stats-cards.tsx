@@ -81,9 +81,7 @@ const SubmissionsStatCard = () => {
 
                         {/* Bottom */}
                         <div className="flex items-center justify-between text-xs">
-                            <span className="text-muted-foreground">
-                                This month
-                            </span>
+                            <span className="text-muted-foreground"></span>
 
                             <span
                                 className={cn(
