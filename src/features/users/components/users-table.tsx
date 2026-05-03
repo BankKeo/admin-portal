@@ -10,7 +10,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { users } from "@/lib/data";
-import { CheckCircle, MoreVertical, Search, XCircle } from "lucide-react";
+import { CheckCircle, Search, XCircle } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import UsersFilter from "./users-filter";
 import { useNavigate } from "@tanstack/react-router";
@@ -46,7 +46,6 @@ const UsersTable = () => {
                             <TableHead>Email</TableHead>
                             <TableHead>Submission Rights</TableHead>
                             <TableHead>Last Active</TableHead>
-                            <TableHead className="w-10" />
                         </TableRow>
                     </TableHeader>
 
@@ -54,7 +53,7 @@ const UsersTable = () => {
                         {users.map((user, i) => (
                             <TableRow
                                 key={i}
-                                className="hover:bg-muted/50"
+                                className="hover:bg-muted/50 cursor-pointer"
                                 onClick={() =>
                                     navigate({ to: `/users/${user.id}` })
                                 }
@@ -96,10 +95,6 @@ const UsersTable = () => {
                                 {/* Last Active */}
                                 <TableCell className="text-sm text-muted-foreground">
                                     {user.lastActive}
-                                </TableCell>
-
-                                <TableCell className="text-right">
-                                    <MoreVertical className="w-4 h-4 text-muted-foreground cursor-pointer" />
                                 </TableCell>
                             </TableRow>
                         ))}
