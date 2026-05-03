@@ -10,14 +10,9 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { users } from "@/lib/data";
-import {
-    CheckCircle,
-    Filter,
-    MoreVertical,
-    Search,
-    XCircle,
-} from "lucide-react";
+import { CheckCircle, MoreVertical, Search, XCircle } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import UsersFilter from "./users-filter";
 
 const UsersTable = () => {
     return (
@@ -36,10 +31,7 @@ const UsersTable = () => {
                     </div>
 
                     {/* Filter */}
-                    <Button variant="outline" className="gap-2">
-                        <Filter className="w-4 h-4" />
-                        Filter
-                    </Button>
+                    <UsersFilter />
                 </div>
             </CardHeader>
 

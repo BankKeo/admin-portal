@@ -1,8 +1,5 @@
-import Pagination from "@/components/pagination";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import {
     Table,
     TableBody,
@@ -14,7 +11,7 @@ import {
 import { submissions } from "@/lib/data";
 import { getStatusBadge } from "@/lib/utils";
 import { useNavigate } from "@tanstack/react-router";
-import { Eye, FileText, Filter, MoreHorizontal, Search } from "lucide-react";
+import { FileText } from "lucide-react";
 
 const HomeRecentSubmissions = () => {
     const navigate = useNavigate();
@@ -32,26 +29,6 @@ const HomeRecentSubmissions = () => {
                     </div>
                     Recent Submissions
                 </CardTitle>
-
-                <div className="flex items-center gap-2">
-                    {/* Search */}
-                    <div className="relative">
-                        <Search className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
-                        <Input
-                            placeholder="Search submissions..."
-                            className="pl-8 w-72"
-                        />
-                    </div>
-
-                    {/* Filter */}
-                    <Button variant="outline" className="gap-2">
-                        <Filter className="w-4 h-4" />
-                        Filter
-                    </Button>
-
-                    {/* Status */}
-                    <Button variant="outline">All Status</Button>
-                </div>
             </CardHeader>
 
             <CardContent>
@@ -63,9 +40,6 @@ const HomeRecentSubmissions = () => {
                             <TableHead>Author</TableHead>
                             <TableHead>Status</TableHead>
                             <TableHead>Submitted</TableHead>
-                            <TableHead className="text-right">
-                                Actions
-                            </TableHead>
                         </TableRow>
                     </TableHeader>
 
@@ -73,7 +47,7 @@ const HomeRecentSubmissions = () => {
                         {submissions.map((item) => (
                             <TableRow
                                 key={item.id}
-                                className="hover:bg-muted/50 cursor-pointer"
+                                className="hover:bg-muted/50 cursor-pointer h-12"
                                 onClick={() =>
                                     handleNavigateToSubmission(item.id)
                                 }
@@ -99,23 +73,10 @@ const HomeRecentSubmissions = () => {
                                 <TableCell className="text-muted-foreground">
                                     {item.date}
                                 </TableCell>
-
-                                <TableCell className="text-right">
-                                    <div className="flex justify-end gap-2">
-                                        <Button variant="ghost" size="icon">
-                                            <Eye className="w-4 h-4" />
-                                        </Button>
-                                        <Button variant="ghost" size="icon">
-                                            <MoreHorizontal className="w-4 h-4" />
-                                        </Button>
-                                    </div>
-                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                 </Table>
-
-                <Pagination />
             </CardContent>
         </Card>
     );
