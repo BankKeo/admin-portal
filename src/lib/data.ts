@@ -43,6 +43,7 @@ export const submissions = [
 
 export const reviewers = [
     {
+        id: "rev-1",
         name: "Dr. Elena Hovart",
         email: "e.hovart@stanford.edu",
         initials: "EH",
@@ -54,6 +55,7 @@ export const reviewers = [
         status: "Active",
     },
     {
+        id: "rev-2",
         name: "Prof. Marcus Chen",
         email: "m.chen@mit.edu",
         initials: "MC",
@@ -65,6 +67,7 @@ export const reviewers = [
         status: "On Leave",
     },
     {
+        id: "rev-3",
         name: "Dr. Sarah Lundt",
         email: "sarah.l@ox.ac.uk",
         initials: "SL",
@@ -76,6 +79,7 @@ export const reviewers = [
         status: "Active",
     },
     {
+        id: "rev-4",
         name: "Dr. Julian Smith",
         email: "jsmith@ethz.ch",
         initials: "JS",
@@ -90,6 +94,7 @@ export const reviewers = [
 
 export const users = [
     {
+        id: "user-1",
         name: "Sarah Jenkins",
         subtitle: "Department of Physics",
         email: "sarah.jenkins@university.edu",
@@ -100,6 +105,7 @@ export const users = [
         initials: "SJ",
     },
     {
+        id: "user-2",
         name: "Dr. Marcus Thorne",
         subtitle: "Biological Sciences",
         email: "m.thorne@research.org",
@@ -109,6 +115,7 @@ export const users = [
         initials: "MT",
     },
     {
+        id: "user-3",
         name: "Elena Rostova",
         subtitle: "History Faculty",
         email: "elena.r@university.edu",

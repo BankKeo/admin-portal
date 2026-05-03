@@ -177,6 +177,48 @@ const SubmissionDetails = () => {
                     </CardContent>
                 </Card>
 
+                {/* Editorial Decision */}
+                <Card>
+                    <CardHeader className="flex flex-row items-center">
+                        <CardTitle className="text-base font-semibold">
+                            Editorial Decision
+                        </CardTitle>
+                    </CardHeader>
+
+                    <CardContent className="space-y-4">
+                        <div className="space-y-2">
+                            <Label className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+                                Internal Comments (Required for Rejection)
+                            </Label>
+
+                            <Textarea
+                                placeholder="Add notes for the editorial team..."
+                                className="min-h-35 resize-none bg-muted/30"
+                            />
+                        </div>
+
+                        <div className="grid grid-cols-1 xl:grid-cols-3 gap-3">
+                            {/* Request Revisions */}
+                            <Button className="bg-purple-600 hover:bg-purple-700 text-white gap-1">
+                                <RefreshCcw className="w-4 h-4" />
+                                Revisions
+                            </Button>
+
+                            {/* Accept */}
+                            <Button className="bg-green-600 hover:bg-green-700 text-white gap-1">
+                                <Check className="w-4 h-4" />
+                                Accept
+                            </Button>
+
+                            {/* Reject */}
+                            <Button className="bg-red-600 hover:bg-red-700 text-white gap-1">
+                                <X className="w-4 h-4" />
+                                Reject
+                            </Button>
+                        </div>
+                    </CardContent>
+                </Card>
+
                 <Card>
                     <CardHeader className="flex flex-row justify-between items-center">
                         <CardTitle className="text-base">
@@ -237,7 +279,7 @@ const SubmissionDetails = () => {
             </div>
 
             {/* RIGHT COLUMN */}
-            <div className="space-y-4 lg:sticky lg:top-4 h-fit">
+            <div className="space-y-4">
                 <Card>
                     <CardHeader className="flex flex-row justify-between items-center">
                         <CardTitle className="text-base">
@@ -331,48 +373,6 @@ const SubmissionDetails = () => {
                                 ))}
                             </TableBody>
                         </Table>
-                    </CardContent>
-                </Card>
-
-                {/* Editorial Decision */}
-                <Card>
-                    <CardHeader className="flex flex-row items-center">
-                        <CardTitle className="text-base font-semibold">
-                            Editorial Decision
-                        </CardTitle>
-                    </CardHeader>
-
-                    <CardContent className="space-y-4">
-                        <div className="space-y-2">
-                            <Label className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
-                                Internal Comments (Required for Rejection)
-                            </Label>
-
-                            <Textarea
-                                placeholder="Add notes for the editorial team..."
-                                className="min-h-35 resize-none bg-muted/30"
-                            />
-                        </div>
-
-                        <div className="grid grid-cols-1 xl:grid-cols-3 gap-3">
-                            {/* Request Revisions */}
-                            <Button className="bg-purple-600 hover:bg-purple-700 text-white gap-1">
-                                <RefreshCcw className="w-4 h-4" />
-                                Revisions
-                            </Button>
-
-                            {/* Accept */}
-                            <Button className="bg-green-600 hover:bg-green-700 text-white gap-1">
-                                <Check className="w-4 h-4" />
-                                Accept
-                            </Button>
-
-                            {/* Reject */}
-                            <Button className="bg-red-600 hover:bg-red-700 text-white gap-1">
-                                <X className="w-4 h-4" />
-                                Reject
-                            </Button>
-                        </div>
                     </CardContent>
                 </Card>
             </div>

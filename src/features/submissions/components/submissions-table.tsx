@@ -1,6 +1,5 @@
 import Pagination from "@/components/pagination";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
@@ -14,7 +13,8 @@ import {
 import { submissions } from "@/lib/data";
 import { getStatusBadge } from "@/lib/utils";
 import { useNavigate } from "@tanstack/react-router";
-import { Eye, Filter, MoreHorizontal, Search } from "lucide-react";
+import { Search } from "lucide-react";
+import SubmissionsFilter from "./submissions-filter";
 
 const SubmissionTable = () => {
     const navigate = useNavigate();
@@ -41,13 +41,7 @@ const SubmissionTable = () => {
                     </div>
 
                     {/* Filter */}
-                    <Button variant="outline" className="gap-2">
-                        <Filter className="w-4 h-4" />
-                        Filter
-                    </Button>
-
-                    {/* Status */}
-                    <Button variant="outline">All Status</Button>
+                    <SubmissionsFilter />
                 </div>
             </CardHeader>
 
@@ -60,9 +54,6 @@ const SubmissionTable = () => {
                             <TableHead>Author</TableHead>
                             <TableHead>Status</TableHead>
                             <TableHead>Submitted</TableHead>
-                            <TableHead className="text-right">
-                                Actions
-                            </TableHead>
                         </TableRow>
                     </TableHeader>
 
@@ -70,7 +61,7 @@ const SubmissionTable = () => {
                         {submissions.map((item) => (
                             <TableRow
                                 key={item.id}
-                                className="hover:bg-muted/50 cursor-pointer"
+                                className="hover:bg-muted/50 cursor-pointer h-12"
                                 onClick={() =>
                                     handleNavigateToSubmission(item.id)
                                 }
@@ -95,17 +86,6 @@ const SubmissionTable = () => {
 
                                 <TableCell className="text-muted-foreground">
                                     {item.date}
-                                </TableCell>
-
-                                <TableCell className="text-right">
-                                    <div className="flex justify-end gap-2">
-                                        <Button variant="ghost" size="icon">
-                                            <Eye className="w-4 h-4" />
-                                        </Button>
-                                        <Button variant="ghost" size="icon">
-                                            <MoreHorizontal className="w-4 h-4" />
-                                        </Button>
-                                    </div>
                                 </TableCell>
                             </TableRow>
                         ))}

@@ -1,3 +1,4 @@
+import Pagination from "@/components/pagination";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -13,7 +14,7 @@ import { getStatusBadge } from "@/lib/utils";
 import { useNavigate } from "@tanstack/react-router";
 import { FileText } from "lucide-react";
 
-const HomeRecentSubmissions = () => {
+const UserSubmissionsHistory = () => {
     const navigate = useNavigate();
 
     const handleNavigateToSubmission = (id: string) => {
@@ -35,9 +36,7 @@ const HomeRecentSubmissions = () => {
                 <Table>
                     <TableHeader className="bg-muted/60 h-12">
                         <TableRow>
-                            <TableHead>ID</TableHead>
                             <TableHead>Title</TableHead>
-                            <TableHead>Author</TableHead>
                             <TableHead>Status</TableHead>
                             <TableHead>Submitted</TableHead>
                         </TableRow>
@@ -52,15 +51,9 @@ const HomeRecentSubmissions = () => {
                                     handleNavigateToSubmission(item.id)
                                 }
                             >
-                                <TableCell className="font-medium text-primary">
-                                    {item.id}
-                                </TableCell>
-
                                 <TableCell className="max-w-75 truncate">
                                     {item.title}
                                 </TableCell>
-
-                                <TableCell>{item.author}</TableCell>
 
                                 <TableCell>
                                     <Badge
@@ -77,9 +70,11 @@ const HomeRecentSubmissions = () => {
                         ))}
                     </TableBody>
                 </Table>
+
+                <Pagination />
             </CardContent>
         </Card>
     );
 };
 
-export default HomeRecentSubmissions;
+export default UserSubmissionsHistory;
