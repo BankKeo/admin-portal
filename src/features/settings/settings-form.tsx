@@ -12,8 +12,12 @@ import {
 import { Landmark, User } from "lucide-react";
 
 const SettingForm = () => {
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+    };
+
     return (
-        <form className="space-y-4 sm:space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
             <Card className="rounded-2xl">
                 {/* Header */}
                 <CardHeader className="flex flex-row items-center gap-2 pb-2">
