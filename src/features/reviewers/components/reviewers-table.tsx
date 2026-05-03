@@ -14,6 +14,7 @@ import { Search, Star } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import Pagination from "@/components/pagination";
 import ReviewersFilter from "./reviewers-filter";
+import { useNavigate } from "@tanstack/react-router";
 
 function StatusBadge({ status }: { status: string }) {
     if (status === "Active") {
@@ -38,6 +39,8 @@ function Stars({ value }: { value: number }) {
 }
 
 const ReviewersTable = () => {
+    const navigate = useNavigate();
+
     return (
         <Card className="lg:col-span-2">
             <CardHeader className="flex flex-row items-center justify-between">
@@ -75,7 +78,13 @@ const ReviewersTable = () => {
 
                     <TableBody>
                         {reviewers.map((r, i) => (
-                            <TableRow key={i} className="hover:bg-muted/50">
+                            <TableRow
+                                key={i}
+                                className="hover:bg-muted/50 cursor-pointer"
+                                onClick={() =>
+                                    navigate({ to: `/reviewers/${r.id}` })
+                                }
+                            >
                                 {/* Name */}
                                 <TableCell>
                                     <div className="flex items-center gap-3">
