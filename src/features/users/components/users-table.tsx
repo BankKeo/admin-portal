@@ -13,8 +13,11 @@ import { users } from "@/lib/data";
 import { CheckCircle, MoreVertical, Search, XCircle } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import UsersFilter from "./users-filter";
+import { useNavigate } from "@tanstack/react-router";
 
 const UsersTable = () => {
+    const navigate = useNavigate();
+
     return (
         <Card className="lg:col-span-2">
             <CardHeader className="flex flex-row items-center justify-between">
@@ -49,7 +52,13 @@ const UsersTable = () => {
 
                     <TableBody>
                         {users.map((user, i) => (
-                            <TableRow key={i} className="hover:bg-muted/50">
+                            <TableRow
+                                key={i}
+                                className="hover:bg-muted/50"
+                                onClick={() =>
+                                    navigate({ to: `/users/${user.id}` })
+                                }
+                            >
                                 {/* Name */}
                                 <TableCell>
                                     <div className="flex items-center gap-3">
