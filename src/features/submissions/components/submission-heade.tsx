@@ -3,8 +3,8 @@ import Header from "@/components/header";
 const SubmissionHeader = () => {
     return (
         <Header
-            title="Submission Overview"
-            description="Review the submission, track its progress, and manage editorial decisions."
+            title="Article Overview"
+            description="Review the article, track its progress, and manage editorial decisions."
         />
     );
 };

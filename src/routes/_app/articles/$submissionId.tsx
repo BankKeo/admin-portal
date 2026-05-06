@@ -2,7 +2,7 @@ import SubmissionDetails from "@/features/submissions/components/submission-deta
 import SubmissionHeader from "@/features/submissions/components/submission-heade";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_app/submissions/$submissionId")({
+export const Route = createFileRoute("/_app/articles/$submissionId")({
     component: RouteComponent,
 });
 

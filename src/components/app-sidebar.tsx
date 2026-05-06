@@ -2,7 +2,6 @@ import {
     Sidebar,
     SidebarContent,
     SidebarGroup,
-    SidebarGroupLabel,
     SidebarMenu,
     SidebarMenuItem,
     SidebarMenuButton,
@@ -14,10 +13,7 @@ import { useNavigate, useRouterState } from "@tanstack/react-router";
 
 const mainItems = [
     { title: "Dashboard", icon: Home, to: "/" },
-    { title: "Submissions", icon: FileText, to: "/submissions" },
-];
-
-const managementItems = [
+    { title: "Articles", icon: FileText, to: "/articles" },
     { title: "Reviewers", icon: Users, to: "/reviewers" },
     { title: "Users", icon: User, to: "/users" },
     { title: "Settings", icon: Settings, to: "/settings" },
@@ -28,9 +24,7 @@ const AppSidebar = () => {
     const navigate = useNavigate();
 
     const handleIsActive = (item: { to: string }) =>
-        item.to === "/"
-            ? location.pathname === "/"
-            : location.pathname.startsWith(item.to);
+        item.to === "/" ? location.pathname === "/" : location.pathname.startsWith(item.to);
 
     return (
         <Sidebar className="bg-linear-to-b from-gray-100 to-gray-200">
@@ -42,15 +36,12 @@ const AppSidebar = () => {
                     </div>
                     <div>
                         <p className="font-semibold">JESAM</p>
-                        <p className="text-xs text-muted-foreground">
-                            Peer Review & Article Approval System
-                        </p>
+                        <p className="text-xs text-muted-foreground">Peer Review & Article Approval System</p>
                     </div>
                 </div>
 
                 {/* MAIN */}
                 <SidebarGroup>
-                    <SidebarGroupLabel>MAIN</SidebarGroupLabel>
                     <SidebarMenu>
                         {mainItems.map((item) => {
                             const isActive = handleIsActive(item);
@@ -59,38 +50,7 @@ const AppSidebar = () => {
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton
                                         isActive={isActive}
-                                        onClick={() =>
-                                            navigate({ to: item.to })
-                                        }
-                                        className="
-                                            h-10
-                                            data-[active=true]:bg-primary/20
-                                            data-[active=true]:font-medium
-                                        "
-                                    >
-                                        <item.icon />
-                                        <span>{item.title}</span>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            );
-                        })}
-                    </SidebarMenu>
-                </SidebarGroup>
-
-                {/* MANAGEMENT */}
-                <SidebarGroup>
-                    <SidebarGroupLabel>MANAGEMENT</SidebarGroupLabel>
-                    <SidebarMenu>
-                        {managementItems.map((item) => {
-                            const isActive = handleIsActive(item);
-
-                            return (
-                                <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton
-                                        isActive={isActive}
-                                        onClick={() =>
-                                            navigate({ to: item.to })
-                                        }
+                                        onClick={() => navigate({ to: item.to })}
                                         className="
                                             h-10
                                             data-[active=true]:bg-primary/20
@@ -116,9 +76,7 @@ const AppSidebar = () => {
                     </Avatar>
                     <div>
                         <p className="text-sm font-medium">Dr. Editor Admin</p>
-                        <p className="text-xs text-muted-foreground">
-                            Editor-in-Chief
-                        </p>
+                        <p className="text-xs text-muted-foreground">Editor-in-Chief</p>
                     </div>
                 </div>
             </SidebarFooter>

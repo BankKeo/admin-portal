@@ -1,13 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { submissions } from "@/lib/data";
 import { getStatusBadge } from "@/lib/utils";
 import { useNavigate } from "@tanstack/react-router";
@@ -17,7 +10,7 @@ const HomeRecentSubmissions = () => {
     const navigate = useNavigate();
 
     const handleNavigateToSubmission = (id: string) => {
-        navigate({ to: `/submissions/${id}` });
+        navigate({ to: `/articles/${id}` });
     };
 
     return (
@@ -48,31 +41,19 @@ const HomeRecentSubmissions = () => {
                             <TableRow
                                 key={item.id}
                                 className="hover:bg-muted/50 cursor-pointer h-12"
-                                onClick={() =>
-                                    handleNavigateToSubmission(item.id)
-                                }
+                                onClick={() => handleNavigateToSubmission(item.id)}
                             >
-                                <TableCell className="font-medium text-primary">
-                                    {item.id}
-                                </TableCell>
+                                <TableCell className="font-medium text-primary">{item.id}</TableCell>
 
-                                <TableCell className="max-w-75 truncate">
-                                    {item.title}
-                                </TableCell>
+                                <TableCell className="max-w-75 truncate">{item.title}</TableCell>
 
                                 <TableCell>{item.author}</TableCell>
 
                                 <TableCell>
-                                    <Badge
-                                        className={getStatusBadge(item.status)}
-                                    >
-                                        {item.status}
-                                    </Badge>
+                                    <Badge className={getStatusBadge(item.status)}>{item.status}</Badge>
                                 </TableCell>
 
-                                <TableCell className="text-muted-foreground">
-                                    {item.date}
-                                </TableCell>
+                                <TableCell className="text-muted-foreground">{item.date}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

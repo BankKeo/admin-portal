@@ -12,14 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AppUsersIndexRouteImport } from './routes/_app/users/index'
-import { Route as AppSubmissionsIndexRouteImport } from './routes/_app/submissions/index'
 import { Route as AppSettingsIndexRouteImport } from './routes/_app/settings/index'
 import { Route as AppReviewersIndexRouteImport } from './routes/_app/reviewers/index'
+import { Route as AppArticlesIndexRouteImport } from './routes/_app/articles/index'
 import { Route as AppUsersCreateRouteImport } from './routes/_app/users/create'
 import { Route as AppUsersUserIdRouteImport } from './routes/_app/users/$userId'
-import { Route as AppSubmissionsSubmissionIdRouteImport } from './routes/_app/submissions/$submissionId'
 import { Route as AppReviewersCreateRouteImport } from './routes/_app/reviewers/create'
 import { Route as AppReviewersReviewerIdRouteImport } from './routes/_app/reviewers/$reviewerId'
+import { Route as AppArticlesSubmissionIdRouteImport } from './routes/_app/articles/$submissionId'
 
 const AppRouteRoute = AppRouteRouteImport.update({
   id: '/_app',
@@ -35,11 +35,6 @@ const AppUsersIndexRoute = AppUsersIndexRouteImport.update({
   path: '/users/',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppSubmissionsIndexRoute = AppSubmissionsIndexRouteImport.update({
-  id: '/submissions/',
-  path: '/submissions/',
-  getParentRoute: () => AppRouteRoute,
-} as any)
 const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
   id: '/settings/',
   path: '/settings/',
@@ -48,6 +43,11 @@ const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
 const AppReviewersIndexRoute = AppReviewersIndexRouteImport.update({
   id: '/reviewers/',
   path: '/reviewers/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppArticlesIndexRoute = AppArticlesIndexRouteImport.update({
+  id: '/articles/',
+  path: '/articles/',
   getParentRoute: () => AppRouteRoute,
 } as any)
 const AppUsersCreateRoute = AppUsersCreateRouteImport.update({
@@ -60,12 +60,6 @@ const AppUsersUserIdRoute = AppUsersUserIdRouteImport.update({
   path: '/users/$userId',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppSubmissionsSubmissionIdRoute =
-  AppSubmissionsSubmissionIdRouteImport.update({
-    id: '/submissions/$submissionId',
-    path: '/submissions/$submissionId',
-    getParentRoute: () => AppRouteRoute,
-  } as any)
 const AppReviewersCreateRoute = AppReviewersCreateRouteImport.update({
   id: '/reviewers/create',
   path: '/reviewers/create',
@@ -76,82 +70,87 @@ const AppReviewersReviewerIdRoute = AppReviewersReviewerIdRouteImport.update({
   path: '/reviewers/$reviewerId',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppArticlesSubmissionIdRoute = AppArticlesSubmissionIdRouteImport.update({
+  id: '/articles/$submissionId',
+  path: '/articles/$submissionId',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
+  '/articles/$submissionId': typeof AppArticlesSubmissionIdRoute
   '/reviewers/$reviewerId': typeof AppReviewersReviewerIdRoute
   '/reviewers/create': typeof AppReviewersCreateRoute
-  '/submissions/$submissionId': typeof AppSubmissionsSubmissionIdRoute
   '/users/$userId': typeof AppUsersUserIdRoute
   '/users/create': typeof AppUsersCreateRoute
+  '/articles/': typeof AppArticlesIndexRoute
   '/reviewers/': typeof AppReviewersIndexRoute
   '/settings/': typeof AppSettingsIndexRoute
-  '/submissions/': typeof AppSubmissionsIndexRoute
   '/users/': typeof AppUsersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AppIndexRoute
+  '/articles/$submissionId': typeof AppArticlesSubmissionIdRoute
   '/reviewers/$reviewerId': typeof AppReviewersReviewerIdRoute
   '/reviewers/create': typeof AppReviewersCreateRoute
-  '/submissions/$submissionId': typeof AppSubmissionsSubmissionIdRoute
   '/users/$userId': typeof AppUsersUserIdRoute
   '/users/create': typeof AppUsersCreateRoute
+  '/articles': typeof AppArticlesIndexRoute
   '/reviewers': typeof AppReviewersIndexRoute
   '/settings': typeof AppSettingsIndexRoute
-  '/submissions': typeof AppSubmissionsIndexRoute
   '/users': typeof AppUsersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteRouteWithChildren
   '/_app/': typeof AppIndexRoute
+  '/_app/articles/$submissionId': typeof AppArticlesSubmissionIdRoute
   '/_app/reviewers/$reviewerId': typeof AppReviewersReviewerIdRoute
   '/_app/reviewers/create': typeof AppReviewersCreateRoute
-  '/_app/submissions/$submissionId': typeof AppSubmissionsSubmissionIdRoute
   '/_app/users/$userId': typeof AppUsersUserIdRoute
   '/_app/users/create': typeof AppUsersCreateRoute
+  '/_app/articles/': typeof AppArticlesIndexRoute
   '/_app/reviewers/': typeof AppReviewersIndexRoute
   '/_app/settings/': typeof AppSettingsIndexRoute
-  '/_app/submissions/': typeof AppSubmissionsIndexRoute
   '/_app/users/': typeof AppUsersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/articles/$submissionId'
     | '/reviewers/$reviewerId'
     | '/reviewers/create'
-    | '/submissions/$submissionId'
     | '/users/$userId'
     | '/users/create'
+    | '/articles/'
     | '/reviewers/'
     | '/settings/'
-    | '/submissions/'
     | '/users/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/articles/$submissionId'
     | '/reviewers/$reviewerId'
     | '/reviewers/create'
-    | '/submissions/$submissionId'
     | '/users/$userId'
     | '/users/create'
+    | '/articles'
     | '/reviewers'
     | '/settings'
-    | '/submissions'
     | '/users'
   id:
     | '__root__'
     | '/_app'
     | '/_app/'
+    | '/_app/articles/$submissionId'
     | '/_app/reviewers/$reviewerId'
     | '/_app/reviewers/create'
-    | '/_app/submissions/$submissionId'
     | '/_app/users/$userId'
     | '/_app/users/create'
+    | '/_app/articles/'
     | '/_app/reviewers/'
     | '/_app/settings/'
-    | '/_app/submissions/'
     | '/_app/users/'
   fileRoutesById: FileRoutesById
 }
@@ -182,13 +181,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppUsersIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/submissions/': {
-      id: '/_app/submissions/'
-      path: '/submissions'
-      fullPath: '/submissions/'
-      preLoaderRoute: typeof AppSubmissionsIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
     '/_app/settings/': {
       id: '/_app/settings/'
       path: '/settings'
@@ -201,6 +193,13 @@ declare module '@tanstack/react-router' {
       path: '/reviewers'
       fullPath: '/reviewers/'
       preLoaderRoute: typeof AppReviewersIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/articles/': {
+      id: '/_app/articles/'
+      path: '/articles'
+      fullPath: '/articles/'
+      preLoaderRoute: typeof AppArticlesIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/users/create': {
@@ -217,13 +216,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppUsersUserIdRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/submissions/$submissionId': {
-      id: '/_app/submissions/$submissionId'
-      path: '/submissions/$submissionId'
-      fullPath: '/submissions/$submissionId'
-      preLoaderRoute: typeof AppSubmissionsSubmissionIdRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
     '/_app/reviewers/create': {
       id: '/_app/reviewers/create'
       path: '/reviewers/create'
@@ -238,32 +230,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppReviewersReviewerIdRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/articles/$submissionId': {
+      id: '/_app/articles/$submissionId'
+      path: '/articles/$submissionId'
+      fullPath: '/articles/$submissionId'
+      preLoaderRoute: typeof AppArticlesSubmissionIdRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
   }
 }
 
 interface AppRouteRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
+  AppArticlesSubmissionIdRoute: typeof AppArticlesSubmissionIdRoute
   AppReviewersReviewerIdRoute: typeof AppReviewersReviewerIdRoute
   AppReviewersCreateRoute: typeof AppReviewersCreateRoute
-  AppSubmissionsSubmissionIdRoute: typeof AppSubmissionsSubmissionIdRoute
   AppUsersUserIdRoute: typeof AppUsersUserIdRoute
   AppUsersCreateRoute: typeof AppUsersCreateRoute
+  AppArticlesIndexRoute: typeof AppArticlesIndexRoute
   AppReviewersIndexRoute: typeof AppReviewersIndexRoute
   AppSettingsIndexRoute: typeof AppSettingsIndexRoute
-  AppSubmissionsIndexRoute: typeof AppSubmissionsIndexRoute
   AppUsersIndexRoute: typeof AppUsersIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppIndexRoute: AppIndexRoute,
+  AppArticlesSubmissionIdRoute: AppArticlesSubmissionIdRoute,
   AppReviewersReviewerIdRoute: AppReviewersReviewerIdRoute,
   AppReviewersCreateRoute: AppReviewersCreateRoute,
-  AppSubmissionsSubmissionIdRoute: AppSubmissionsSubmissionIdRoute,
   AppUsersUserIdRoute: AppUsersUserIdRoute,
   AppUsersCreateRoute: AppUsersCreateRoute,
+  AppArticlesIndexRoute: AppArticlesIndexRoute,
   AppReviewersIndexRoute: AppReviewersIndexRoute,
   AppSettingsIndexRoute: AppSettingsIndexRoute,
-  AppSubmissionsIndexRoute: AppSubmissionsIndexRoute,
   AppUsersIndexRoute: AppUsersIndexRoute,
 }
 

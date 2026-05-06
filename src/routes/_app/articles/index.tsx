@@ -3,7 +3,7 @@ import SubmissionsStatCard from "@/features/submissions/components/submissions-s
 import SubmissionsTable from "@/features/submissions/components/submissions-table";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_app/submissions/")({
+export const Route = createFileRoute("/_app/articles/")({
     component: RouteComponent,
 });
 
