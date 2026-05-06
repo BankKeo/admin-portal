@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { blog, feedbacks, reviewers } from "@/lib/data";
 import DOMPurify from "dompurify";
 import { useState } from "react";
-import SubmissionPlagiarismChecker from "./submission-Plagiarism-checker";
+import SubmissionPlagiarismChecker from "./submission-plagiarism-checker";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import ReviewersFilter from "@/features/reviewers/components/reviewers-filter";
 import { Input } from "@/components/ui/input";
@@ -54,7 +54,7 @@ function getRecommendationStyle(rec: string) {
 const SubmissionDetails = () => {
     const [openChecker, setOpenChecker] = useState(false);
     const [openAssignReviewer, setOpenAssignReviewer] = useState(false);
-    const [assignedReviewers, setAssignedReviewers] = useState([]);
+    const [assignedReviewers, setAssignedReviewers] = useState<any>([]);
 
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -260,7 +260,7 @@ const SubmissionDetails = () => {
 
                             <TableBody>
                                 {assignedReviewers &&
-                                    assignedReviewers.map((reviewer, index) => (
+                                    assignedReviewers.map((reviewer: any, index: number) => (
                                         <TableRow key={index} className="hover:bg-muted/50">
                                             {/* Reviewer */}
                                             <TableCell>
@@ -358,16 +358,18 @@ const SubmissionDetails = () => {
                                         <TableRow key={i} className="hover:bg-muted/50 cursor-pointer">
                                             <TableCell>
                                                 <Checkbox
-                                                    checked={assignedReviewers.some((rev) => rev.id === r.id)}
+                                                    checked={assignedReviewers.some((rev: any) => rev.id === r.id)}
                                                     onCheckedChange={() => {
-                                                        const exists = assignedReviewers.some((rev) => rev.id === r.id);
+                                                        const exists = assignedReviewers.some(
+                                                            (rev: any) => rev?.id === r.id,
+                                                        );
 
                                                         if (exists) {
-                                                            setAssignedReviewers((prev) =>
-                                                                prev.filter((rev) => rev.id !== r.id),
+                                                            setAssignedReviewers((prev: any) =>
+                                                                prev.filter((rev: any) => rev?.id !== r.id),
                                                             );
                                                         } else {
-                                                            setAssignedReviewers((prev) => [...prev, r]);
+                                                            setAssignedReviewers((prev: any) => [...prev, r]);
                                                         }
                                                     }}
                                                 />
