@@ -1,16 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
-import {
-    FileText,
-    Hourglass,
-    RefreshCcw,
-    CheckCircle,
-    XCircle,
-} from "lucide-react";
+import { FileText, Hourglass, RefreshCcw, CheckCircle, XCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const stats = [
     {
-        title: "Total Submissions",
+        title: "Total Articles",
         value: 128,
         change: "+12.5%",
         trend: "up",
@@ -68,16 +62,12 @@ const SubmissionsStatCard = () => {
                                 >
                                     <stat.icon className="w-5 h-5" />
                                 </div>
-                                <span className="text-sm text-muted-foreground">
-                                    {stat.title}
-                                </span>
+                                <span className="text-sm text-muted-foreground">{stat.title}</span>
                             </div>
                         </div>
 
                         {/* Value */}
-                        <div className="text-3xl font-semibold tracking-tight">
-                            {stat.value}
-                        </div>
+                        <div className="text-3xl font-semibold tracking-tight">{stat.value}</div>
 
                         {/* Bottom */}
                         <div className="flex items-center justify-between text-xs">
@@ -86,9 +76,7 @@ const SubmissionsStatCard = () => {
                             <span
                                 className={cn(
                                     "px-2 py-1 rounded-md font-medium",
-                                    stat.trend === "up"
-                                        ? "bg-green-100 text-green-600"
-                                        : "bg-red-100 text-red-600",
+                                    stat.trend === "up" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600",
                                 )}
                             >
                                 {stat.change}
